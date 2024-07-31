@@ -8,13 +8,26 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link rel="stylesheet" href="css/leaflet.css">
     	<link rel="stylesheet" href="css/main.css">
-		<script src="js/leaflet.js"></script>
-		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	        <title>Portal mapowy - Test</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		  <script src="js/leaflet.js"></script>
+		  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	    <title>Oświetlenie - pomiary</title>
+      <link rel = "icon" href ="css/images/TMCE_logo_min.png">
     </head>
     <body>
         <div id="map">
+          <nav id="header">
+            <a href="https://www.tmce.pl" title="tmce.pl">
+                <img src="css/images/logoTMCE.png"/>
+            </a>               
+            <div id="leftbar">
+               <h3>OŚWIETLENIE - POMIARY</h3> 
+            </div>             
+            <button id="opisowka" title="Idź do modułu OPISÓWKA" class="btn-opisowka">OPISÓWKA</button>
+            <button class="pokaz" title="Zwiń/rozwiń panel warstw"><i class="fa-solid fa-layer-group fa-xl" style="color:white"></i>
+            </button>  
+        </nav>
         </div>
 		<script src="js/mojkod.js">      
 		</script>
