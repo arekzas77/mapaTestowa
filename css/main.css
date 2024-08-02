@@ -214,10 +214,15 @@
  #grid .powrot{
 	background-color:cornflowerblue;
 	border:none;
-	padding:4px
+	padding:4px 8px 4px 8px;
+	color:aliceblue;
+	font-size: 14px;
+	cursor: pointer;
  }
 
-
+ .inactive{
+	opacity: 0.3;
+	}
 
 @media (max-width: 720px){
   #leftbar{

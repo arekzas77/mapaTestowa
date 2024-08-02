@@ -6,24 +6,21 @@ const map = L.map('map',{
 
 map.setView([50.2, 19.93],8);		
 //map.setMaxBounds(map.getBounds());
+let layerGeojson;
 
 const gminyUrl="gminyTiles/{z}/{x}/{y}.png";
-
 const gminyTiles= L.tileLayer(`${gminyUrl}`,{maxNativeZoom:12,maxZoom:15,minZoom:8,transparent:true}).addTo(map);
-
 const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
 	subdomains:['mt0','mt1','mt2','mt3'],
 	attribution: '&copy; <a href="https://www.google.com/intl/pl_pl/help/terms_maps/">Dane mapy Google 2024</a>'
 	});			
-	
 const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 	maxZoom: 22,
 	subdomains:['mt0','mt1','mt2','mt3'],
 	attribution: '&copy; <a href="https://www.google.com/intl/pl_pl/help/terms_maps/">Dane mapy Google 2024</a>'
 	});
 	
-
 const openStreet=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 20,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -39,7 +36,7 @@ const tmceIcon = L.icon({
    	});
 		
 const tmceMarker = L.marker([50.02658, 19.929859], {
-		icon: tmceIcon}).addTo(map).bindPopup("<h3>Już za niedługo to będzie najlepszy portal mapowy na świecie;)</h3> <center><img src='./css/images/champions2.jpg'/><center>")
+		icon: tmceIcon}).addTo(map).bindPopup("<h3 style='margin:8px 0px'>Nie ma tutaj projektów niewykonalnych:)</h3> <center><img src='./css/images/tmce_budynek.jpg'/><center>")
 	
 const baseLayers = {
 	"Google zdjęcia": googleHybrid,
@@ -58,6 +55,7 @@ const layerControl = L.control.layers(baseLayers, overlayMaps, {collapsed : fals
 const buttonPokaz=document.querySelector(".pokaz");
 const zawartoscMapy=document.querySelector(".leaflet-control-layers");
 buttonPokaz.addEventListener("click", ()=>{
+	(layerGeojson) ? layerGeojson.remove():null;
 	buttonPokaz.classList.toggle("ukryjLayers");
 	zawartoscMapy.classList.toggle("ukryj-leaflet-control");
 	if(buttonPokaz.classList.contains("ukryjLayers")){
@@ -85,7 +83,7 @@ btnModulOpisowkaOn.addEventListener("click",modulOpisowkaOn);
 btnModulMapaOn.addEventListener("click",modulOpisowkaOf)
 
 function modulOpisowkaOn(){
-	//(layerGeojson) ? layerGeojson.remove():null;
+	(layerGeojson) ? layerGeojson.remove():null;
 	modulMapa.style.visibility="hidden";
 	modulOpisowka.style.display="block";
 	//zabijTabeleProstokat();
