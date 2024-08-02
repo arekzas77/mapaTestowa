@@ -1,3 +1,18 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+#grid{
+	position: absolute;
+	display: none;
+	top: 0;
+	width:100vw;
+	height: 100vh;
+	z-index:12005;
+	font-family: Arial, Helvetica, sans-serif;
+	background: linear-gradient(0deg, aliceblue,#0a172b);	
+}
 #map{ 
 	position: absolute;
 	display: block;
@@ -6,10 +21,10 @@
 	width: 100%;
 	height: 100%;}
 .leaflet-top{
-	top:7%
+	top:54px
 }
 
-#map nav {
+#map header {
 	display:flex;
 	justify-content: space-between;
 	height:48px;
@@ -87,3 +102,145 @@
 .leaflet-control-layers{
 	transition: .3s all linear;
 }
+
+
+#grid header{
+	display:flex;
+  height:110px;
+  justify-content: space-evenly;
+  background-color:  #0a172b;
+  align-items: center;
+	color:aliceblue;
+  z-index: 2;				    
+}
+#grid a{
+  color: aliceblue;
+  text-decoration: none;
+  display:inline-block
+}
+
+#grid .left-header{
+  display:flex;
+  align-items: center;
+  width:160px;
+  justify-content: center;
+  
+}
+#grid .left-header img{
+  height:80px;
+  display:block;
+  margin-right: 6px;
+}
+#grid .right-header img{
+	height:60px;
+ 	background-color: aliceblue;
+  display:block;
+
+}
+
+#grid .text{
+  width:120px;
+}
+#grid .top-logo{
+  font-size: 22px;
+}
+#grid .bottom-logo{
+  font-size: 12px;
+}
+
+#grid .title{
+  font-size: 64px;
+  text-align: center;
+  text-shadow: 2px 2px 8px black;
+}
+
+#grid nav{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 15px 0px 5px 0px;
+	margin-left:2%;
+	width:96vw;
+}
+#grid ul{    
+  display: flex;
+	list-style-type: none;
+  color:aliceblue;
+	align-items: center;
+	font-size: 16px;
+	border: 1px solid aliceblue;		
+}
+
+#grid li{
+  padding:10px 14px 10px 14px;
+  
+	cursor:pointer;
+	font-size: 16px;  
+  }
+#grid li:hover{
+    background-color: aliceblue;
+		color:#333f51
+  }
+#grid ul a{
+    text-decoration: none;
+    color:aliceblue;
+}
+
+#grid .grid-select-layer{
+	border: 1px solid aliceblue;
+	color:black;
+	margin-bottom:5px;
+	margin-left:2%;
+	padding: 8px;
+	width:430px;	
+}
+
+#grid #example-table{
+    width:96%;
+	margin:2px auto;	    
+}
+
+
+#wybierz-warstwe-opisowka{
+	padding: 2px;
+	font-size: 14px;
+	background-color: aliceblue;
+	border:none;
+ }
+ #grid label{
+	color:aliceblue;
+ }
+
+ #grid .powrot{
+	background-color:cornflowerblue;
+	border:none;
+	padding:4px
+ }
+
+
+
+@media (max-width: 720px){
+  #leftbar{
+		font-size: 16px;
+		letter-spacing: 0em;
+		font-weight: normal;
+	}
+	#map header{
+		margin:0;
+		height:40px
+		
+	}
+	#header> a >img{
+		margin:0;
+		border:none;
+		height:40px
+	}
+	#leftbar{
+		margin:0;
+		border:none
+	}
+
+	.btn-opisowka{
+		display:none
+	}
+  }

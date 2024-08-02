@@ -1,15 +1,15 @@
 //map initialization
 const map = L.map('map',{
 	zoomControl: true,
-	maxZoom:12
+	maxZoom:14
 				});
 
 map.setView([50.2, 19.93],8);		
-map.setMaxBounds(map.getBounds());
+//map.setMaxBounds(map.getBounds());
 
 const gminyUrl="gminyTiles/{z}/{x}/{y}.png";
 
-const gminyTiles= L.tileLayer(`${gminyUrl}`,{maxZoom:12,minZoom:8,transparent:true}).addTo(map);
+const gminyTiles= L.tileLayer(`${gminyUrl}`,{maxNativeZoom:12,maxZoom:15,minZoom:8,transparent:true}).addTo(map);
 
 const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
@@ -48,7 +48,7 @@ const baseLayers = {
 	"Brak": bezTla};
 const overlayMaps= {
 	"Pinezka TMCE": tmceMarker,
-	"Granica gmin": gminyTiles
+	"<span style=' font-size:14px'>Granica gmin</span><br><img src='css/images/gminy_TMCE.png' align=top style='margin: 3px 3px 3px 20px'>TMCE</img><br><img src='css/images/gminy_pozostale.png'  align=top style='margin: 3px 3px 3px 20px'>Pozostałe</img>":gminyTiles
 	};
 	
 const layerControl = L.control.layers(baseLayers, overlayMaps, {collapsed : false}).addTo(map);
@@ -66,3 +66,31 @@ buttonPokaz.addEventListener("click", ()=>{
 		buttonPokaz.style.backgroundColor="#009578";
 	};
 });
+
+/*async function testGeojson(){
+	const response=await fetch("GeoJsonData/wojewodztwa.geojson");
+	console.log(response);
+	const data=await response.json();
+	const layerGeoJson=L.geoJson(data,{style:{color:"gold"}}).addTo(map);
+	console.log(data);
+	map.fitBounds(layerGeoJson.getBounds())
+}*/
+
+// -----------------modul OPISOWKA------------------------
+const btnModulOpisowkaOn=document.getElementById("opisowka");
+const btnModulMapaOn=document.getElementById("powrot");
+const modulMapa=document.getElementById("map");
+const modulOpisowka=document.getElementById("grid");
+btnModulOpisowkaOn.addEventListener("click",modulOpisowkaOn);
+btnModulMapaOn.addEventListener("click",modulOpisowkaOf)
+
+function modulOpisowkaOn(){
+	//(layerGeojson) ? layerGeojson.remove():null;
+	modulMapa.style.visibility="hidden";
+	modulOpisowka.style.display="block";
+	//zabijTabeleProstokat();
+}
+function modulOpisowkaOf(){
+	modulMapa.style.visibility="visible";
+	modulOpisowka.style.display="none";
+}
