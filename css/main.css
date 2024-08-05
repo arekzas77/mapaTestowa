@@ -248,4 +248,20 @@
 	.btn-opisowka{
 		display:none
 	}
+	#grid header{
+		height:60px
+	}
+	#grid .title{
+		font-size: 24px;
+	}
+	#grid .text{
+		display:none
+	}
+	#grid .left-header{
+		width:auto
+	}
+	#grid .left-header img{
+		height:40px;
+
+	}
   }

@@ -81,7 +81,7 @@ function renderWojewodztwa(){
   table.setData(tabledata)
 }
 async function renderPowiaty(){
-  //preloader.style.zIndex= "12010";
+  preloader.style.zIndex= "12010";
   const url='GeoJsonData/powiaty_etykiety.geojson';
   const response=await fetch(url);
   const powiaty=await response.json();
@@ -95,14 +95,14 @@ async function renderPowiaty(){
       {title:"WOJEWÓDZTWO", field:"WOJ",headerFilter:"input"},    
       {title:"TMCE", field:"TMCE",headerFilter:"input"}
           ];
-  //preloader.style.zIndex= "-2";
+  preloader.style.zIndex= "-2";
   table.setColumns(columnsPowiaty);
   table.setData(powiatyGeoserver);
   table.setLocale("pl");
 };
 
 async function renderGminy() {
-  //preloader.style.zIndex = "12010";
+  preloader.style.zIndex = "12010";
   const filter='TAK'
   const url = 'GeoJsonData/gminy_etykiety.geojson';
   const response = await fetch(url);
@@ -117,7 +117,7 @@ async function renderGminy() {
       { title: "TMCE", field: "TMCE", headerFilter: "input" },
       { title: "ILOŚĆ", field: "ILOSC", headerFilter: "input" }    
   ];
-  //preloader.style.zIndex = "-2";
+  preloader.style.zIndex = "-2";
   table.setColumns(columnsGminy);
   table.setData(gminyTmce);
 };
@@ -127,8 +127,8 @@ function GetSelectedData(){
   console.log(selectedLayerGrid);
   let cqlFilter='';
   let selectedData = table.getSelectedData();
-  //preloader.style.zIndex= "12010";
-  //console.log(preloader);
+  preloader.style.zIndex= "12010";
+  console.log(preloader);
   console.log(selectedData);
   let str='';
   for (const element of selectedData){
@@ -159,10 +159,8 @@ function GetSelectedData(){
 
   let urlGeoJson=`GeoJsonData/${selectedLayerGrid}.geojson`;
   $.getJSON(urlGeoJson,idSelected).then((res)=>{
-      //preloader.style.zIndex= "-2";
-      //console.log(preloader);
+      preloader.style.zIndex= "-2";
       console.log(idSelected);
-      
       console.log(res);
       let data;
       for(const item of res.features){

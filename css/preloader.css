@@ -1,0 +1,35 @@
+.preloader {
+  display: flex;
+  position: absolute;
+  font-size: 16px;
+  line-height: 34px;
+  z-index: 12002;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%);
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 50px;
+  background-color: rgb(255, 255, 255);
+  animation: preLoader 1.5s linear infinite;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 80px 1000px rgba(0, 0, 0, 0.2);
+}
+
+.preloader img {
+  height: 85px;
+}
+
+@keyframes preLoader {
+  0% {
+    color: black;
+  }
+
+  100% {
+    color: transparent;
+  }
+
+}

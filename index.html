@@ -6,67 +6,72 @@
       <meta name="viewport" content="initial-scale=1">
       <meta name="mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-capable" content="yes">
+			<link rel="stylesheet" href="css/preloader.css">
       <link rel="stylesheet" href="css/leaflet.css">
     	<link rel="stylesheet" href="css/main.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
-		  
 		  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	    <title>Oświetlenie - pomiary</title>
       <link rel = "icon" href ="css/images/TMCE_logo_min.png">
     </head>
     <body>
-      <!--opisowka-->
+<!--loader-->
+      <div class="preloader">
+          <img src="css\images\logoTMCE.png"/>
+          <img src="css\preloader.gif" alt="preloader">
+                Chwila cierpliwości... i jest :)
+      </div>
+<!--opisowka-->
       <div id="grid">
         <header class="header">
-            <div class="left-header">
+          <div class="left-header">
             <img src="css\images\logoTMCE min.png" alt="logoTMCE">
             <a href="http://tmce.pl" target="_blank">
-                <div class="text">
-                <p class="top-logo">TUKAJ MAPPING</p>
-                <p class="bottom-logo">CENTRAL EUROPE</p>
-                </div>
+          		<div class="text">
+             		<p class="top-logo">TUKAJ MAPPING</p>
+              	<p class="bottom-logo">CENTRAL EUROPE</p>
+            	</div>
             </a>
-            </div>
-            <div class="title">Dane opisowe - GeoJSON</div>
-            <div class="right-header">
-            </div>
+          </div>
+          <div class="title">Dane opisowe - GeoJSON</div>
         </header>
         <nav>
-            <ul>
-                <li id="powrot"title="powrót do mapy">Powrót do mapy</li>
-            </ul>
+          <ul>
+            <li id="powrot"title="powrót do mapy">Powrót do mapy</li>
+          </ul>
         </nav>
         <div class="grid-select-layer">
-                <label for="warstwa">Warstwa:     </label>
-                    <select name="warstwa" id="wybierz-warstwe-opisowka">
-                        <option value="wojewodztwa">Województwa</option>                          
-                        <option value="powiaty">Powiaty</option>
-                        <option value="gminy">Gminy TMCE</option>                                                                    
-                    </select>
-                <button id="zbliz-do" class="powrot inactive" disabled title="Wskaż na mapie">Wskaż na mapie</button>
-                <!--<button class="powrot statystyka"><i class="fa-solid fa-chart-simple fa-xl"></i></button>  -->         
+          <label for="warstwa">Warstwa:     </label>
+          <select name="warstwa" id="wybierz-warstwe-opisowka">
+              <option value="wojewodztwa">Województwa</option>                          
+              <option value="powiaty">Powiaty</option>
+              <option value="gminy">Gminy TMCE</option>                                                                    
+          </select>
+          <button id="zbliz-do" class="powrot inactive" disabled title="Wskaż na mapie">Wskaż na mapie</button>
+          <!--<button class="powrot statystyka"><i class="fa-solid fa-chart-simple fa-xl"></i></button>  -->         
         </div>
-        <div id="example-table"></div>
-    </div>
+            <div id="example-table"></div>
+        </div>
 <!--mapa-->
-        <div id="map">
-          <header id="header">
-            <a href="https://www.tmce.pl" title="tmce.pl">
-                <img src="css/images/logoTMCE.png"/>
-            </a>               
-            <div id="leftbar">
-               <h3>OŚWIETLENIE - POMIARY</h3> 
-            </div>             
-            <button id="opisowka" title="Idź do modułu OPISÓWKA" class="btn-opisowka">OPISÓWKA</button>
-            <button class="pokaz" title="Zwiń/rozwiń panel warstw"><i class="fa-solid fa-layer-group fa-xl" style="color:white"></i>
-            </button>  
+      <div id="map">
+        <header id="header">
+          <a href="https://www.tmce.pl" title="tmce.pl">
+              <img src="css/images/logoTMCE.png"/>
+          </a>               
+          <div id="leftbar">
+             <h3>OŚWIETLENIE - POMIARY</h3> 
+          </div>             
+          <button id="opisowka" title="Idź do modułu OPISÓWKA" class="btn-opisowka">OPISÓWKA</button>
+          <button class="pokaz" title="Zwiń/rozwiń panel warstw"><i class="fa-solid fa-layer-group fa-xl" style="color:white"></i>
+          </button>  
         </header>
-        </div>
-    <script src="js/leaflet.js"></script>
-	<script src="js/mojkod.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+      </div>
+		<script src="js/preloader.js"></script>
+  	<script src="js/leaflet.js"></script>
+		<script src="js/mojkod.js"></script>
+		<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
     <script src="js/opisowka.js"></script>
     </body>
 </html>
