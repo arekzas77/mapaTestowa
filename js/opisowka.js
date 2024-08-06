@@ -137,13 +137,13 @@ function GetSelectedData(){
       }
       else if(selectedLayerGrid==='powiaty'){
           str+=`${element.KOD_POW},`;
-       console.log(str);} 
+       } 
       else if(selectedLayerGrid==='gminy'){
           str+=`${element.JPT_KOD_JE},`;
-       console.log(str);} 
+       } 
       else {
        str+=`${element.TERYT},`;
-       console.log(str);}       
+       }       
   } 
   let idSelected=str.slice(0,-1);
   console.log(idSelected);

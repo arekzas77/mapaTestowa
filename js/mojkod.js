@@ -10,6 +10,9 @@ let layerGeojson;
 
 const gminyUrl="gminyTiles/{z}/{x}/{y}.png";
 const gminyTiles= L.tileLayer(`${gminyUrl}`,{maxNativeZoom:12,maxZoom:15,minZoom:8,transparent:true}).addTo(map);
+
+
+
 const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
 	subdomains:['mt0','mt1','mt2','mt3'],
@@ -65,14 +68,21 @@ buttonPokaz.addEventListener("click", ()=>{
 	};
 });
 
-/*async function testGeojson(){
-	const response=await fetch("GeoJsonData/wojewodztwa.geojson");
-	console.log(response);
-	const data=await response.json();
-	const layerGeoJson=L.geoJson(data,{style:{color:"gold"}}).addTo(map);
-	console.log(data);
-	map.fitBounds(layerGeoJson.getBounds())
-}*/
+//Popup for gminy GeoJson
+let layerGeojsonGminy;
+async function renderGminyGeoJson() {
+  const url = 'GeoJsonData/gminy.geojson';
+  const response = await fetch(url);
+  const gminy = await response.json();
+	const gminyAtributtes = gminy.features.map(feature => feature.properties);
+  layerGeojsonGminy=L.geoJson(gminy,{
+		onEachFeature: function(feature,layer){
+			layer.bindPopup(`<b>Powiat:</b> ${feature.properties.POW}<br><b>Gmina: </b>${feature.properties.JPT_NAZWA_}<br><b>Ilość lamp: </b><span style="color:red"><b>${feature.properties.ILOSC}</span>`)
+		},	
+		style: {color:"transparent",opacity:0}
+}).addTo(map);}
+  
+renderGminyGeoJson();
 
 // -----------------modul OPISOWKA------------------------
 const btnModulOpisowkaOn=document.getElementById("opisowka");
