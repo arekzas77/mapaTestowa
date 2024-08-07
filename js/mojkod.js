@@ -11,8 +11,6 @@ let layerGeojson;
 const gminyUrl="gminyTiles/{z}/{x}/{y}.png";
 const gminyTiles= L.tileLayer(`${gminyUrl}`,{maxNativeZoom:12,maxZoom:15,minZoom:8,transparent:true}).addTo(map);
 
-
-
 const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
 	subdomains:['mt0','mt1','mt2','mt3'],
@@ -53,6 +51,10 @@ const overlayMaps= {
 	
 const layerControl = L.control.layers(baseLayers, overlayMaps, {collapsed : false}).addTo(map);
 
+//komponenty skali mapy
+L.control.scale({
+  imperial: false,
+	}).addTo(map);
 
 // kontroler warstw on/off
 const buttonPokaz=document.querySelector(".pokaz");
