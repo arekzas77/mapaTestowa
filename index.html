@@ -67,9 +67,22 @@
           <button class="pokaz" title="Zwiń/rozwiń panel warstw"><i class="fa-solid fa-layer-group fa-xl" style="color:white"></i>
           </button>  
         </header>
+        <div class="marker-position">
+          <div class="wgs84">WGS 84 X: 50.300000 Y:19.630000  </div>
+          <div class="pozostaleUklady">
+              <select name="" class="wybierzUklad js-wybierzUklad">
+                  <option value="PUWG1992">PUWG 1992</option>
+                  <option value="2000s6">PUWG 2000s6</option>
+                  <option value="2000s7">PUWG 2000s7</option>
+                  <option value="1965s1">PUWG 1965s1</option>
+              </select>
+              <div class="pozostaleWSP">566581.50, 240367.52</div>   
+          </div>
+        </div>
       </div>
 		<script src="js/preloader.js"></script>
   	<script src="js/leaflet.js"></script>
+    <script src="js/proj4-compressed.js"></script>
 		<script src="js/mojkod.js"></script>
 		<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
     <script src="js/opisowka.js"></script>

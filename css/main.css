@@ -103,7 +103,38 @@
 	transition: .3s all linear;
 }
 
+.marker-position {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	bottom: 5px;
+	right: 50%;
+	transform: translateX(50%);
+	z-index: 900;
+	padding: 5px;
+	border: solid 2px rgba(0,0,0,.2);
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+	font-weight: 500;
+	background: rgba(240, 248, 255, 0.696);
+}
+.pozostaleUklady{
+	margin:0 5px;
+	display:flex;
+	justify-content: center;
+	border: 1px solid rgba(0,0,0,.2);
+}
+.wybierzUklad{
+	border:none;
+	font-size: 11px;
+	font-weight:700;
+	background:transparent;
+	cursor:pointer;	
+}
+	
 
+/*opisowka*/
 #grid header{
 	display:flex;
   height:110px;
@@ -233,7 +264,6 @@
 	#map header{
 		margin:0;
 		height:40px
-		
 	}
 	#header> a >img{
 		margin:0;
@@ -262,6 +292,8 @@
 	}
 	#grid .left-header img{
 		height:40px;
-
+	}
+	.marker-position{
+		display:none
 	}
   }
