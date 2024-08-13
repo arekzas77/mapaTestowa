@@ -132,7 +132,93 @@
 	background:transparent;
 	cursor:pointer;	
 }
-	
+
+.obreb,.gmina, .miejscowosc{
+	display: flex;
+	justify-content: space-between;
+	padding:4px;
+}
+
+.akceptuj{
+	background-color:#007bb2;
+	margin:0 2px;
+	padding:4px 6px;
+	color:white;
+	cursor:pointer;
+	border:none;
+	font-size: 12px;
+}
+
+.akceptuj:hover{
+	background-color: green;
+}
+.akceptuj:active{
+	transform:scale(0.9);
+}
+
+.leftpanel {
+	position:absolute;
+	top:160px;
+	z-index: 12000;
+	display: block;
+	margin-left:40px;
+	user-select: none;
+	}
+.wyszukajPRG{
+	margin-left: 5px;
+	border: 2px solid rgba(0,0,0,0.2);
+	border-radius: 2px;
+	background: rgba(240, 248, 255, 1);
+	display:flex;
+	flex-direction: column;
+}
+
+.szukaj{
+	position:absolute;
+	width:20px;
+	top:160px;
+	padding: 29px 4px 29px 4px;
+	background-color:#007bb2;
+	color: white;
+	margin:0px 10px;
+	border:none;
+	text-align: center;
+	z-index: 13001;
+	cursor: pointer;
+	border: 2px solid rgba(0,0,0,0.2);
+}
+
+.szukaj span{
+	display:block;
+	}
+
+.szukaj:active{
+	transform: scale(0.9);
+}
+
+h4{
+	text-align:center;
+}
+
+.off{
+	border:none;
+	background-color: salmon;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 500;
+	padding:4px;
+	color: white;
+	cursor:pointer;
+	border-radius:2px;
+	margin:0px 0px 2px 5px;	
+	}
+.on{
+	background-color:#007bb2;
+}
+
+.ukryj{
+	display:none;
+}	
 
 /*opisowka*/
 #grid header{

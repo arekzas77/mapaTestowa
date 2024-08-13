@@ -116,6 +116,23 @@ map.on("mousemove", function (e) {
 /*'<span style="font-weight:700">PUWG1992: </span>'+crs1992[0].toFixed(2)+',   '+crs1992[1].toFixed(2);*/	
 });
 
+// Stop "click" na mapie dla contenerów:
+const headerEl=document.getElementById("header");
+const leftpanelEl=document.getElementById("leftpanel");
+const szukajBtnEl=document.getElementById("szukaj");
+const coordinatesEl=document.getElementById("arek");
+
+//Panel "Szukaj"- szukaj pwoiat/gmine
+const szukajEl=document.querySelector(".js-szukaj");
+szukajEl.addEventListener("click",()=>{
+	(layerGeojson) ? layerGeojson.remove():null;
+	if(leftpanelEl.classList.contains("ukryj")){
+	leftpanelEl.classList.remove("ukryj")
+	szukajEl.classList.add("on")}
+	else {leftpanelEl.classList.add("ukryj")
+			szukajEl.classList.remove("on")}
+});
+
 // -----------------modul OPISOWKA------------------------
 const btnModulOpisowkaOn=document.getElementById("opisowka");
 const btnModulMapaOn=document.getElementById("powrot");

@@ -67,6 +67,27 @@
           <button class="pokaz" title="Zwiń/rozwiń panel warstw"><i class="fa-solid fa-layer-group fa-xl" style="color:white"></i>
           </button>  
         </header>
+        <div class="szukaj js-szukaj" id="szukaj" title="Szukaj"><span style="writing-Mode: vertical-rl">SZUKAJ</span></div>
+          <div class="leftpanel ukryj" id="leftpanel">
+            <button class="off on" id="close-PRG" title="PRG/działki">PRG</button>
+              <div class="wyszukajPRG" id="szukaj-PRG">
+                <h4>Wyszukaj PRG:</h4>
+                <div class="gmina" >
+                  <label for="gminy">Powiat:</label>
+                  <select name="gminy" id="gmina" onchange="nowylayer()">
+                    <option value="">Wybierz powiat</option>
+                  </select>              
+                  <button class="akceptuj" title="Powiększ do">Zbliż do</button>
+                </div>
+                <div class="obreb">
+                  <label for="obreby">Gmina:</label>
+                  <select name="obreby" id="obreby">
+                  <option value="">Wybierz gminę TMCE</option>
+                  </select>              
+                  <button class="akceptuj" title="Powiększ do">Zbliż do</button>
+                </div>
+              </div>
+          </div>
         <div class="marker-position">
           <div class="wgs84">WGS 84 X: 50.300000 Y:19.630000  </div>
           <div class="pozostaleUklady">
