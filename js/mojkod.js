@@ -120,7 +120,18 @@ map.on("mousemove", function (e) {
 const headerEl=document.getElementById("header");
 const leftpanelEl=document.getElementById("leftpanel");
 const szukajBtnEl=document.getElementById("szukaj");
-const coordinatesEl=document.getElementById("arek");
+const coordinatesEl=document.querySelector(".js-marker-position");
+console.log(coordinatesEl);
+
+
+L.DomEvent.disableScrollPropagation(zawartoscMapy); 
+L.DomEvent.disableClickPropagation(headerEl);
+L.DomEvent.disableClickPropagation(leftpanelEl);
+L.DomEvent.on(leftpanelEl, 'click', function (ev) {
+    L.DomEvent.stopPropagation(ev);
+});
+L.DomEvent.disableClickPropagation(szukajBtnEl);
+L.DomEvent.disableClickPropagation(coordinatesEl);
 
 //Panel "Szukaj"- szukaj pwoiat/gmine
 const szukajEl=document.querySelector(".js-szukaj");
@@ -132,6 +143,63 @@ szukajEl.addEventListener("click",()=>{
 	else {leftpanelEl.classList.add("ukryj")
 			szukajEl.classList.remove("on")}
 });
+
+//PRG wyszukiwarka w oparciu o GeoJson
+const akceptujGminaEl=document.querySelector("div.gmina > button.akceptuj");
+const akceptujObrebEl=document.querySelector("div.obreb > button.akceptuj");
+//akceptujGminaEl.addEventListener("click", fitSelectedGmina);
+//akceptujObrebEl.addEventListener("click", fitSelectedObreb);
+const selectElGmina=document.querySelector("#js-gmina");
+const selectELPowiat=document.querySelector("#js-powiat");
+
+selectELPowiat.addEventListener("change", ()=>{
+	(layerGeojson) ? layerGeojson.remove():null;
+	selectElGmina.removeAttribute("disabled");
+	generateGminaOptionsHtml();
+
+})
+
+async function generatePowiatOptionsHtml(){
+	let urlGeoJson='GeoJsonData/powiaty_etykiety.geojson'
+	const response= await fetch(urlGeoJson);
+	const data= await response.json();
+	const powiatyGeoJson=data.features.map((feature)=>feature.properties);
+	console.log(powiatyGeoJson);
+	let powiatOptionsHtml='<option>Wybierz powiat</option>';
+	const selectELPowiat= document.querySelector("#js-powiat");
+	for(const item of powiatyGeoJson){
+		item.TMCE==='TAK'?powiatOptionsHtml+=`<option value="${item.KOD_POW}">${item.KOD_POW} ${item.JPT_NAZWA_}</option>`:null;
+	};
+	selectELPowiat.innerHTML=powiatOptionsHtml;
+	};
+
+	async function generateGminaOptionsHtml(){
+		const selectedPowiat=document.querySelector('#js-powiat').value;
+		console.log(selectedPowiat);
+		
+		const selectELGmina= document.querySelector('#js-gmina');
+		let gminyOptionsHtml='<option>Wybierz gminę TMCE</option>';
+		const urlGeoJsonGmina='GeoJsonData/gminy_etykiety.geojson';
+		const response= await fetch(urlGeoJsonGmina);
+		const data= await response.json();
+		console.log(data);
+		const gminyGeoJson=data.features.map((feature)=>feature.properties);
+		console.log(gminyGeoJson);
+		
+		for(const item of gminyGeoJson){
+			item.KOD_POW==selectedPowiat?gminyOptionsHtml+=`<option value="${item.JPT_KOD_JE}">${item.JPT_NAZWA_}</option>`:null;
+		};
+				selectELGmina.innerHTML=gminyOptionsHtml;
+					}
+
+
+
+
+
+
+	generatePowiatOptionsHtml();
+
+
 
 // -----------------modul OPISOWKA------------------------
 const btnModulOpisowkaOn=document.getElementById("opisowka");
