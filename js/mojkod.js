@@ -145,10 +145,10 @@ szukajEl.addEventListener("click",()=>{
 });
 
 //PRG wyszukiwarka w oparciu o GeoJson
+const akceptujPowiatEl=document.querySelector("div.powiat > button.akceptuj");
 const akceptujGminaEl=document.querySelector("div.gmina > button.akceptuj");
-const akceptujObrebEl=document.querySelector("div.obreb > button.akceptuj");
-//akceptujGminaEl.addEventListener("click", fitSelectedGmina);
-//akceptujObrebEl.addEventListener("click", fitSelectedObreb);
+akceptujPowiatEl.addEventListener("click", fitSelectedPowiat);
+akceptujGminaEl.addEventListener("click", fitSelectedGmina);
 const selectElGmina=document.querySelector("#js-gmina");
 const selectELPowiat=document.querySelector("#js-powiat");
 
@@ -156,15 +156,49 @@ selectELPowiat.addEventListener("change", ()=>{
 	(layerGeojson) ? layerGeojson.remove():null;
 	selectElGmina.removeAttribute("disabled");
 	generateGminaOptionsHtml();
-
 })
 
+async function fitSelectedPowiat(){
+	let selectedPowiatGeometry;
+	const urlGeoJson='GeoJsonData/powiaty.geojson'
+	const response= await fetch(urlGeoJson);
+	const data= await response.json();
+	for(const element of data.features){
+		if(element.properties.JPT_KOD_JE==selectELPowiat.value){
+			selectedPowiatGeometry=element;
+			console.log(selectedPowiatGeometry);
+			break;
+		}
+	}
+	layerGeojson= L.geoJson(selectedPowiatGeometry,{
+		style: {color: "gold"}
+	}).bindPopup(`<b>Powiat:</b>${selectedPowiatGeometry.properties.JPT_NAZWA_}<center><center>`).addTo(map);
+		map.fitBounds(layerGeojson.getBounds());
+}
+
+async function fitSelectedGmina(){
+	let selectedGminaGeometry;
+	const urlGeoJson='GeoJsonData/gminy.geojson'
+	const response= await fetch(urlGeoJson);
+	const data= await response.json();
+	for(const element of data.features){
+		if(element.properties.JPT_KOD_JE==selectElGmina.value){
+			selectedGminaGeometry=element;
+			console.log(selectedGminaGeometry);
+			break;
+		}
+	}
+	layerGeojson= L.geoJson(selectedGminaGeometry,{
+		style: {color: "gold"}
+	}).bindPopup(`<b>Powiat:</b> ${selectedGminaGeometry.properties.POW}<br><b>Gmina: </b>${selectedGminaGeometry.properties.JPT_NAZWA_}<br><b>Ilość lamp: </b><span style="color:red"><b><b>${selectedGminaGeometry.properties.ILOSC}</span>`).addTo(map);
+		map.fitBounds(layerGeojson.getBounds());
+}
+
 async function generatePowiatOptionsHtml(){
-	let urlGeoJson='GeoJsonData/powiaty_etykiety.geojson'
+	const urlGeoJson='GeoJsonData/powiaty_etykiety.geojson'
 	const response= await fetch(urlGeoJson);
 	const data= await response.json();
 	const powiatyGeoJson=data.features.map((feature)=>feature.properties);
-	console.log(powiatyGeoJson);
 	let powiatOptionsHtml='<option>Wybierz powiat</option>';
 	const selectELPowiat= document.querySelector("#js-powiat");
 	for(const item of powiatyGeoJson){
@@ -175,30 +209,19 @@ async function generatePowiatOptionsHtml(){
 
 	async function generateGminaOptionsHtml(){
 		const selectedPowiat=document.querySelector('#js-powiat').value;
-		console.log(selectedPowiat);
-		
 		const selectELGmina= document.querySelector('#js-gmina');
 		let gminyOptionsHtml='<option>Wybierz gminę TMCE</option>';
 		const urlGeoJsonGmina='GeoJsonData/gminy_etykiety.geojson';
 		const response= await fetch(urlGeoJsonGmina);
 		const data= await response.json();
-		console.log(data);
 		const gminyGeoJson=data.features.map((feature)=>feature.properties);
-		console.log(gminyGeoJson);
-		
 		for(const item of gminyGeoJson){
 			item.KOD_POW==selectedPowiat?gminyOptionsHtml+=`<option value="${item.JPT_KOD_JE}">${item.JPT_NAZWA_}</option>`:null;
 		};
-				selectELGmina.innerHTML=gminyOptionsHtml;
-					}
-
-
-
-
-
+		selectELGmina.innerHTML=gminyOptionsHtml;
+		}
 
 	generatePowiatOptionsHtml();
-
 
 
 // -----------------modul OPISOWKA------------------------
