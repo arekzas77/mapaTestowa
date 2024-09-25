@@ -151,14 +151,13 @@ akceptujPowiatEl.addEventListener("click", fitSelectedPowiat);
 akceptujGminaEl.addEventListener("click", fitSelectedGmina);
 const selectElGmina=document.querySelector("#js-gmina");
 const selectELPowiat=document.querySelector("#js-powiat");
-
 selectELPowiat.addEventListener("change", ()=>{
-	(layerGeojson) ? layerGeojson.remove():null;
 	selectElGmina.removeAttribute("disabled");
 	generateGminaOptionsHtml();
 })
 
 async function fitSelectedPowiat(){
+	(layerGeojson) ? layerGeojson.remove():null;
 	let selectedPowiatGeometry;
 	const urlGeoJson='GeoJsonData/powiaty.geojson'
 	const response= await fetch(urlGeoJson);
@@ -177,6 +176,7 @@ async function fitSelectedPowiat(){
 }
 
 async function fitSelectedGmina(){
+	(layerGeojson) ? layerGeojson.remove():null;
 	let selectedGminaGeometry;
 	const urlGeoJson='GeoJsonData/gminy.geojson'
 	const response= await fetch(urlGeoJson);
@@ -199,9 +199,10 @@ async function generatePowiatOptionsHtml(){
 	const response= await fetch(urlGeoJson);
 	const data= await response.json();
 	const powiatyGeoJson=data.features.map((feature)=>feature.properties);
+	const powiatyGeoJsonSorted=powiatyGeoJson.sort((a,b)=>a.JPT_NAZWA_>b.JPT_NAZWA_);
 	let powiatOptionsHtml='<option>Wybierz powiat</option>';
 	const selectELPowiat= document.querySelector("#js-powiat");
-	for(const item of powiatyGeoJson){
+	for(const item of powiatyGeoJsonSorted){
 		item.TMCE==='TAK'?powiatOptionsHtml+=`<option value="${item.KOD_POW}">${item.KOD_POW} ${item.JPT_NAZWA_}</option>`:null;
 	};
 	selectELPowiat.innerHTML=powiatOptionsHtml;
@@ -215,7 +216,8 @@ async function generatePowiatOptionsHtml(){
 		const response= await fetch(urlGeoJsonGmina);
 		const data= await response.json();
 		const gminyGeoJson=data.features.map((feature)=>feature.properties);
-		for(const item of gminyGeoJson){
+		const gminyGeoJsonSorted=gminyGeoJson.sort((a,b)=>a.JPT_NAZWA_>b.JPT_NAZWA_);
+		for(const item of gminyGeoJsonSorted){
 			item.KOD_POW==selectedPowiat?gminyOptionsHtml+=`<option value="${item.JPT_KOD_JE}">${item.JPT_NAZWA_}</option>`:null;
 		};
 		selectELGmina.innerHTML=gminyOptionsHtml;
