@@ -1,6 +1,6 @@
 # Example Leaflet map
 
-Project uses tiles and GeoJSON as vector data
+Project uses tiles and GeoJSON as vector data (without MapServer/GeoServer)
 
 # JS libraries used in the project:
 - Map component: Leaflet.js https://leafletjs.com/
