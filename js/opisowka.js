@@ -175,7 +175,8 @@ function GetSelectedData(){
       
       layerGeojson=L.geoJson(data,{
           style: {color: "gold"}
-      }).bindPopup(`<h4>${data.properties.JPT_NAZWA_}<h4><center><center>`).addTo(map);}).then(()=>{
+      }).bindPopup(`<h4>${data.properties.JPT_NAZWA_}<h4><center><center>`).addTo(map);})
+      .then(()=>{
           map.fitBounds(layerGeojson.getBounds());
           modulOpisowkaOf()})};
 
