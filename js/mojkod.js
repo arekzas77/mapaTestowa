@@ -101,6 +101,7 @@ async function renderGminyGeoJson() {
 	const gminyAtributtes = gminy.features.map(feature => feature.properties);
   layerGeojsonGminy=L.geoJson(gminy,{
 		onEachFeature: function(feature,layer){
+			layer.on("mouseover",()=>addTextToDiv(`<b>Powiat:</b> ${feature.properties.POW}<br><b>Gmina: </b>${feature.properties.JPT_NAZWA_}<br><b>Ilość lamp: </b><span style="color:red"><b>${feature.properties.ILOSC}</span>`))
 			layer.bindPopup(`<b>Powiat:</b> ${feature.properties.POW}<br><b>Gmina: </b>${feature.properties.JPT_NAZWA_}<br><b>Ilość lamp: </b><span style="color:red"><b>${feature.properties.ILOSC}</span>`)
 		},	
 		style: {color:"transparent",opacity:0}
@@ -245,7 +246,12 @@ async function generatePowiatOptionsHtml(){
 
 	generatePowiatOptionsHtml();
 
+//hover gmina => attributes in div
 
+function addTextToDiv(text) {
+  const markerPlace = document.querySelector(".info-marker-position");
+  markerPlace.innerHTML = text;
+}
 // -----------------modul OPISOWKA------------------------
 const btnModulOpisowkaOn=document.getElementById("opisowka");
 const btnModulMapaOn=document.getElementById("powrot");

@@ -103,6 +103,19 @@
 	transition: .3s all linear;
 }
 
+.info-marker-position{
+	position:absolute;
+	bottom:50px;
+	right:10px;
+	z-index: 900;
+	background-color: rgba(240, 248, 255, 0.7);
+	padding: 6px;
+	width:210px;
+	font-size:14px;
+	border: 2px rgb(192, 189, 189) solid;
+	border-radius:2px
+}
+
 .marker-position {
 	display: flex;
 	justify-content: center;
