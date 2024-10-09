@@ -1,8 +1,30 @@
 //map initialization
 const map = L.map('map',{
-	zoomControl: true,
+	zoomControl: false,
 	maxZoom:14,
 				});
+
+//Extend ZoomBar - Adbutton "Start map"
+L.Control.ZoomBar = L.Control.Zoom.extend({
+	onAdd: function(map) {
+				const container = L.Control.Zoom.prototype.onAdd.call(this, map);
+				// Dodaj nowy przycisk
+				const startMap = L.DomUtil.create('a', 'leaflet-control-zoom-bar', container);
+				startMap.innerHTML = '<img src="css/images/home.png" style="margin-top:2px">';
+				startMap.href = '#';
+				startMap.title = 'Mapa startowa';
+				L.DomEvent.on(startMap, 'click', this._zoomToStart, this);
+				return container;
+			},
+	_zoomToStart: function(e) {
+        L.DomEvent.stopPropagation(e);
+        L.DomEvent.preventDefault(e);
+        map.setView([50.2, 19.93],8);
+    }
+});
+	
+map.addControl(new L.Control.ZoomBar())
+//map.addControl(new arekZoomBar());
 
 map.setView([50.2, 19.93],8);		
 //map.setMaxBounds(map.getBounds());
@@ -121,8 +143,6 @@ const headerEl=document.getElementById("header");
 const leftpanelEl=document.getElementById("leftpanel");
 const szukajBtnEl=document.getElementById("szukaj");
 const coordinatesEl=document.querySelector(".js-marker-position");
-console.log(coordinatesEl);
-
 
 L.DomEvent.disableScrollPropagation(zawartoscMapy); 
 L.DomEvent.disableClickPropagation(headerEl);

@@ -158,7 +158,7 @@
 
 .leftpanel {
 	position:absolute;
-	top:160px;
+	top:180px;
 	z-index: 12000;
 	display: block;
 	margin-left:40px;
@@ -176,7 +176,7 @@
 .szukaj{
 	position:absolute;
 	width:20px;
-	top:160px;
+	top:180px;
 	padding: 29px 4px 29px 4px;
 	background-color:#007bb2;
 	color: white;
@@ -186,6 +186,7 @@
 	z-index: 13001;
 	cursor: pointer;
 	border: 2px solid rgba(0,0,0,0.2);
+	border-radius:2px;
 }
 
 .szukaj span{
