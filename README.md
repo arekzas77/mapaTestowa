@@ -7,3 +7,7 @@
 - Map component: Leaflet.js https://leafletjs.com/
 - Support for coordinate systems: [proj4](https://www.github.com/kartena/Proj4Leaflet)
 - Javascript table in "Opisowka" component: Tabulator.js https://tabulator.info/
+
+<h2>Demo</h2>
+https://arekzas77.github.io/mapaTestowa/
+
